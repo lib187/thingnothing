@@ -39,8 +39,30 @@
 2. C语言中参数的默认值的问题，好像只能用宏定义来实现
 
 
-3. Linux中的线程获取， gdb是的LWP
+3. Linux中的线程获取， gdb是的LWP，pthread_create返回的handle
+  https://blog.csdn.net/weixin_30920513/article/details/99643167
 
 4. 重入、线程安全、信号安全
   信号引起的死锁问题https://www.cnblogs.com/solohac/p/4154183.html
+  
+5. Linux中so加载方式，延迟加载， 还有一种方式是so被加载后自动会执行的函数
+  dlopen的两个so中有同名符号会怎么样，通过dlsym('',NULL)获取的会是哪一个？
+  另外貌似还有一个dlmopen，https://stackoverflow.com/questions/33497784/unresolved-symbol-with-only-dlmopen-and-not-dlopen
 
+6. lua 和C,为什么使用lua，lua的优势是什么？脚本语言，不需要预处理-编译-汇编-链接操作，直接JIT解释运行语言。(这个之前也做过类似的简单功能，通过配置文件改变(不是控制)业务运行流程)
+  https://www.ufgame.com/luac.html
+  
+7. 测试的重要性，项目长期持续时，CI的重要性
+  https://www.redhat.com/zh/topics/devops/what-is-ci-cd
+  ansible的script用于CI https://www.redhat.com/zh/resources/ansible-continuous-integration-delivery-whitepaper
+
+8. C/C++语言的优势
+ 游戏开发, ios, redis
+9. Python的优点 ML
+
+10. linux中慢调用，返回错误码
+  https://blog.csdn.net/u010193457/article/details/51444617
+  
+11. QEMU 和bochs 仿真器
+
+12. 
