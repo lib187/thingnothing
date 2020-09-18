@@ -1,0 +1,62 @@
+1. 参数的处理
+
+2. 日志，定位日志所在代码行号
+  ---C语言中的日志，其他语言的实现其实都可以参考---
+  C语言预编译中的#和##的作用https://blog.csdn.net/qq_37858386/article/details/78919163
+  
+  这里以日志函数为例:
+    #define log(fmt, args...) do { Log("[%s:%s():%d] " fmt, __FILE__,  __func__, __LINE__, ##args); }while(0)
+
+    void Log(const char *pcFmt, ...)
+    {
+      // e.g. log("ABC");
+      // 宏替换后Deploy_Log("[%s:%s():%d] " "ABC", __FILE__,  __func__, __LINE__, ##args)
+      // 即 Deploy_Log("[%s:%s():%d] ABC", __FILE__,  __func__, __LINE__, ##args)
+      // 此时pcFmt == "[%s:%s():%d] ABC"
+
+      va_list pcArgs;
+      // 	void va_start(va_list ap, last_arg) 这个宏初始化ap变量，它与va_arg和va_end 宏是一起使用的。last_arg 是最后一个传递给函数的已知的固定参数，即省略号之前的参数
+      va_start(pcArgs, pcFmt);  // pcArgs == (__FILE__,  __func__, __LINE__, ##args) 
+
+      // 此时acLogBuf = printf("[%s:%s():%d] ABC", __FILE__,  __func__, __LINE__)
+      (void)vsnprintf(acLogBuf, DEPLOY_LOGMSG_MAX_LEN, pcFmt, pcArgs); 
+      // void va_end(va_list ap)这个宏允许使用了 va_start 宏的带有可变参数的函数返回。如果在从函数返回之前没有调用 va_end，则结果为未定义。
+      va_end(pcArgs); 
+    }
+    
+   进一步的用法，如果我想封装一个Malloc, 函数中可以打印调用Malloc时的代码位置(类似log)，可以打印返malloc的返回值
+   这里有一点需要将变参传递下去，这里可以参考https://my.oschina.net/u/1429862/blog/222903
+      void Category::_logUnconditionally(Priority::Value priority, const char* format, va_list arguments) throw() 
+      {
+          _logUnconditionally2(priority, StringUtil::vform(format, arguments));
+      }
+
+      void Category::log(Priority::Value priority, const char* stringFormat, ...) throw() 
+      { 
+              if (isPriorityEnabled(priority)) 
+              {
+                  va_list va;
+                  va_start(va, stringFormat);
+                  _logUnconditionally(priority, stringFormat, va);
+                  va_end(va);
+              }
+      }
+    基于上面的log，封装一层malloc和free函数，可能方便的知道内存的申请和释放情况，防止内存泄漏
+    void * MyMalloc(size_t size, ...)
+    {
+        void *ptr = malloc(size);
+
+      char *pcFile = NULL;
+      char *pcFunc = NULL;
+      int iLine = 0;
+      va_list sArgv;  
+      va_start(sArgv, size);
+      pcFile   = va_arg(sArgv, char*);
+      pcFunc = va_arg(sArgv, char*);
+      iLine = va_arg(sArgv, int);
+      va_end(sArgv);
+
+      log("[%s:%s():%d] malloc 0x%lx .\n", pcFile,  pcFunc, iLine, (long)ptr);        
+
+        return ptr;
+    }
