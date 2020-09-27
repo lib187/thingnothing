@@ -32,6 +32,7 @@
   DSP+ arm / FPGA(更灵活些)
 
 13. Python的优点 ML
+  python跟C语言的区别，gdb可以查看所有的内存，python的pdb好像没有这个功能吧？为什么需要这个功能，是因为之前使用rpyc进行远程调用时，总是
 
 14. QEMU 和bochs 仿真器
   Bochs http://bochs.sourceforge.net/doc/docbook/user/introduction.html
@@ -52,3 +53,12 @@
   在信号处理函数中调用localtime,它又会调用 __tz_convert 搜索后原因参考 https://blog.csdn.net/chosen0ne/article/details/46928483
 
 
+20. rpc 的数据传输问题
+  目前rpyc的数据传输感觉做的还是不好用，返回一个char*
+  
+21. 数据建模
+  了解什么是数据
+
+22. 机器学习
+
+23. 网络高并发的问题，
