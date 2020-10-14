@@ -1,6 +1,7 @@
 # 1. 代码仓目前使用什么？
   毫无疑问git，svn无法离线，有网络问题或者仓库迁移后无法查看日志。代码最重要的就是提交记录的日志。特别是代码量多的时候，没有细分的提交记录，基本无法系统的阅读，这点从linux的内核源码就可以知道，
   最新版本的内核源码根本不是个人可以全部读完的，学习的都是早期的内核版本。
+
 # 2. 如果以前用的是svn，如何迁移到git？需要保存当时的提交记录，不要再手动提交（工作量无穷大，也浪费时间）
   https://my.oschina.net/u/199525/blog/1556989
   
@@ -32,3 +33,148 @@
 
     4.git push origin master  更新到 GitHub 的 fork 上
 ---------------------
+
+# 5. 常用的git操作
+  1) 
+  3. 删除恢复文件；
+  git reset --hard e83e0bbb8  --恢复文件(删除已经修改的代码) 
+  git reset --soft HEAD^      --恢复到前一次提交的记录，保留已做的修改
+  git pull                    --更新文件
+  git commit --amend          --更新上次提交的log
+  git blame -L 560,563 msg.py --文件的某些行的最后一次提交记录
+  git status                  --查看状态，是否有修改的问题件
+  git checkout -b new_br      --从当前分支创建一个新分支new_br
+  git checkout                --检出分支
+  git cherry-pick --abort     --中断合入
+  
+---------------------
+  git配置
+1. 配置git
+   git config --global user.name “l00464806”
+   git config --global user.email  “liuzhiqiang26@huawei.com”
+2. 配置秘钥（这里以isource为例，isource相关的host配置：10.1.13.50 isource-dg.huawei.com，code.huawei.com: 10.140.8.53 code.huawei.com）
+   vim /etc/hosts    //添加git仓库相关的网站和ip地址信息
+   ssh-keygen -t rsa -C "yourmail"  
+   从用户目录下的.ssh文件夹中打开生成的公钥（.pub文件），拷贝公钥并在相应的远程仓库网站的ssh配置中添加新的秘钥。（如果配置秘钥后仍然出现git@code-sh.rnd.huawei.com's password: Permission denied, please try again.，输入密码后错误。可以尝试在生成ssh秘钥时使用默认的秘钥名（个人尝试可以），具体为什么有待分析。）
+其他命令：
+ 命令	 功能
+ git init	 当前目录下创建一个git代码仓库
+ git clone [url]	 下载一个项目和它的整个代码历史
+ git add [file1] [file2]	 添加指定文件到暂存区
+ git add [dir]            	 添加指定目录到暂存区，包括子目录
+ git add .	 添加指定目录到暂存区，包括子目录
+ git rm [file1] [file2]	 删除工作区文件，并将这次修改放入暂存区 
+ git commit -m [message]	 提交暂存区到仓库区
+ git commit [file1] [file2] -m [message]	 提交暂存区的指定文件到仓库区
+ git commit -v            	 提交时显示所有diff信息
+ git commit --amend [file1] [file2]            	 重新做上一次的commit，并包括指定文件的新变化
+ git commit --amend -m [message]	使用新的commit替换最近的一次提交 ，如果代码没有变，则修改message信息
+ git branch            	 列出所有本地分支
+ git branch -r	 列出所有远程分支
+ git branch -a	 列出所有本地分支和远程分支
+ git branch [name]	 创建新的分支，但不跳转分支
+ git checkout -b [name]	 创建新的分支，并跳转到该分支
+ git branch [branch-name] [commit]	 创建新的分支，指向指定的commit
+ git branch --track [branch] [remote-branch]	 创建新的分支，并与指定的分支创建追踪关系
+ git checkout [branch]	 切换到指定的分支，并更新相应的工作区
+ git checkout -            	 切换到上一分支
+ git merge [branch] 	 合并指定分支到当前分支
+ git cherry-pick [commit] 	 选择一个commit合并到当前分支 
+ git branch -d [branch]	 删除指定分支
+ git push origin --delete [branch]
+ git branch -dr [remote/branch] 
+ 删除远程分支 
+ git tag	 列出所有tag
+ git tag [tag]	 新建一个tag在当前commit 
+ git tag [tag] [commit] 	 新建一个tag在指定commit 
+ git tag -d [tag]	 删除本地tag 
+ git show [tag]	 查看tag信息 
+ git push [remote] [tag] 	 提交指定tag 
+ git push [remote] --tags 	 提交所有tag 
+ git checkout -b [branch] [tag]	 新建一个分支，并指向某个tag
+ git status            	 显示有变更的文件
+ git log 	 显示当前分支的版本历史 
+ git log --stat 	 显示commit历史，以及每次commit发生变更的文件 
+ git log -S [keyword]	 根据关键词搜索提交历史 ，在修改内容中搜索
+ git log --follow [file]
+ git whatchanged [file]	 显示某个文件的版本历史
+ git log -p [file]	 显示指定文件相关的每一次diff
+ git log -5 --pretty --oneline 	 显示过去5次提交，每次提交单行显示
+ git shortlog -sn	 显示所有提交过的用户，按提交次数排序
+ git blame [file]	 显示文件每一行由谁、在什么时间、哪次commit进行修改的
+ git diff            	 显示暂存区和工作区的差异
+ git diff  --cached [file]	 显示暂存区和上一个commit的差异 
+ git diff HEAD 	 显示工作区与当前最新commit之间的差异
+ git diff [first-branch] [second-branch]	 显示两次提交的差别
+ git show [commit]	 显示某次提交的元数据和内容变化 
+ git show --name-only [commit]	 显示某次提交发生变化的文件 
+ git reflog	 显示当前分支的最近几次提交（当跳转到之前的commit时，该命令十分用来查看历史commit）
+ git fetch [remote]	 下载远程仓库的所有变动 
+ git remote -v 	 显示所有远程仓库
+ git remote show [remote] 	 显示某个远程仓库的信息 
+ git remote add [shortname] [url]	 增加一个新的远程仓库，并命名 
+ git pull [remote] [branch] 	 取回远程仓库的变化，并与本地分支合并 
+ git push [remote] [branch] 	 上传本地指定分支到远程仓库 
+ git push [remote] --force	 强行推送当前分支到远程仓库，即使有冲突
+ git push [remote] --all	 推送所有分支到远程仓库
+ git checkout [file]	 恢复暂存区的指定文件到工作区
+ git checkout [commit] [file] 	 恢复某个commit的指定文件到暂存区和工作区 
+ git checkout . 	 恢复暂存区的所有文件到工作区
+ git reset [file]	 重置暂存区的指定文件，与上一次commit保持一致，工作区不变  
+ git reset --hard	 重置暂存区与工作区，与上一次commit保持一致
+ git reset --keep [commit]	 重置当前HEAD为指定commit，但保持暂存区和工作区不变 
+ git revert [commit]	 创建一个新commit来撤销所指定的commit，后者的所有变化都被前者抵消，并且应用到当前分支 
+ git stash
+ git stash pop	 暂时将未提交的变化溢出，稍后再移入 
+
+撤销操作：
+ 未add，未commit（在工作区）	 git checkout [file] 或 git checkout .
+ 已add，未commit（在暂存区）	 git reset [file] 或 git reset 
+ 已commit，未push（在仓库）	 git reset --hard HEAD~1 (撤销最后一次commit，并回退代码)
+ git reset HEAD ~1 (撤销最后一次commit，不回退代码)
+ 已commit，已push（在远程）	 git revert [commit]
+ 修改commit的注释内容	 git commit --amend 
+ 强制将分支与远程仓库同步（覆盖）	 git fetch --all
+git reset --hard origin/master
+git pull
+
+补丁操作
+ 功能	 命令
+ 当前分支所有超前master的提交	 git format-patch -M master
+ 某次提交以后的所有patch	 git format-patch 4e16 --4e16指的是commit名
+ 从根到指定提交的所有patch:	 git format-patch --root 4e16
+ 某两次提交之间的所有patch	 git format-patch 365a..4e16 --365a和4e16分别对应两次提交的名称
+ 某次提交（含）之前的几次提交	 git format-patch –n 07fe --n指patch数，07fe对应提交的名称
+ 例如：git format-patch -1 07fe
+ 先检查patch文件	 git apply --stat newpatch.patch
+ 检查能否应用成功	 git apply --check newpatch.patch
+ 打补丁	 git am --signoff < newpatch.patch (使用-s或--signoff选项，可以commit信息中加入Signed-off-by信息)
+ git am newpatch.patch
+ 打补丁	 git -p1  < newpatch.patch
+---------------------
+  
+# 6. 仓库分支间的关系
+  ---------------------------------------------------------------------------------------------------------
+  Here is an illustration, by Jon Loeliger. Both commit nodes B and C are parents of commit node A. Parent commits are ordered left-to-right.
+
+  G   H   I   J
+   \ /     \ /
+    D   E   F
+     \  |  / \
+      \ | /   |
+       \|/    |
+        B     C
+         \   /
+          \ /
+           A
+  A =      = A^0
+  B = A^   = A^1     = A~1
+  C = A^2  = A^2
+  D = A^^  = A^1^1   = A~2
+  E = B^2  = A^^2
+  F = B^3  = A^^3
+  G = A^^^ = A^1^1^1 = A~3
+  H = D^2  = B^^2    = A^^^2  = A~2^2
+  I = F^   = B^3^    = A^^3^
+  J = F^2  = B^3^2   = A^^3^2
+  ---------------------------------------------------------------------------------------------------------
