@@ -15,6 +15,8 @@
 6. lua 和C,为什么使用lua，lua的优势是什么？脚本语言，不需要预处理-编译-汇编-链接操作，直接JIT解释运行语言。(这个之前也做过类似的简单功能，通过配置文件改变(不是控制)业务运行流程)
   https://www.ufgame.com/luac.html
   Lua脚本在互联网的应用  https://juejin.im/post/6844904019140280328
+  Python > js(nodejs) > Lua
+  其中js2lua可以进行转换，python和lua都有协程
   
   
 7. 测试的重要性，项目长期持续时，CI的重要性
@@ -80,6 +82,11 @@
   目前来看PC操作系统没有希望，手机操作系统，只存在从下游往上游去吃，以前的阿里的yunos，现在的华为鸿蒙os，小米暂时还没看到。另外就是云操作系统，这一点可以从阿里、华为的云服务上看出来，首先是内部使用孵化，成熟后商用。腾讯的存在感低了一些。，另外头条其实都有坑你
   进行这方面的投入，服务器上用得多了，也会往这方面发展。最让人感觉的神奇的其实是Amazon，谁能想到一个零售公司会率先推出阅读和云服务？阅读等涉及到云  存储的公司，做大后其实都有往分布式系统和云计算发展的动力。
   数据库其实也是的，目前阿里和华为都有开发自己的数据库，分布式式、容灾等基础的线上安全要求。目前来看，独立进入是不可能的。
+  
+  操作系统
+  https://blog.csdn.net/hjw199666/article/details/102646123
+  https://blog.csdn.net/qawsedrf123lala/article/details/103233624
+  
  
  
 26. 网络安全
@@ -95,5 +102,9 @@
   Linux内核，提交代码，提交哪部分的代码？--智能家居？
   内核的沙箱, mac os的沙盒，为什么原神不支持。
   如何参与到 Linux 社区中来  http://opensourceway.community/posts/contribute_to_community/how_to_participate_in_the_linux_community/
+
 28. 独立开发
   iOS还是华为的生态?首选游戏还是iOS的app?
+
+29. 数字游民-- “全世界最好的工作
+  https://www.jianshu.com/p/60b654b42b31
