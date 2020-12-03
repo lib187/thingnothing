@@ -3,6 +3,8 @@
 int main(int argc, char args[])
 
 2. 日志，定位日志所在代码行号
+  #和##在宏定义中的用法： https://www.cnblogs.com/alantu2018/p/8465911.html
+
   ---C语言中的日志，其他语言的实现其实都可以参考---
   C语言预编译中的#和##的作用https://blog.csdn.net/qq_37858386/article/details/78919163
   
