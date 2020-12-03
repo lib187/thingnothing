@@ -1,2 +1,11 @@
 1. 并发（Concurrent）与并行（Parallel）区别
   https://blog.csdn.net/claram/article/details/52103997
+
+2. CPU缓存刷新的误解--讲解CPU3级缓存的基础
+  http://ifeve.com/cpu-cache-flushing-fallacy-cn/
+
+3. 解决并发编程的问题-无锁编程的概念
+  https://www.jianshu.com/p/7b8a34c88770
+
+4. 使用无锁结构会不会比有锁结构更加快？
+  https://www.zhihu.com/question/53303879
