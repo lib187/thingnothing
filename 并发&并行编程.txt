@@ -9,3 +9,6 @@
 
 4. 使用无锁结构会不会比有锁结构更加快？
   https://www.zhihu.com/question/53303879
+5. volatile/内存屏障、处理器的乱序执行和多处理器之间数据同步（CPU缓存一致性MESI(Modified）的问题
+  http://blog.chinaunix.net/uid-20682147-id-5817710.html
+  volatile只针对编译器，无法做到目前需要的，毕竟是单CPU时出现的。
