@@ -107,3 +107,5 @@ int main(int argc, char args[])
     fac(4, 3)，可以继续封装一层或者用默认参数值
      
      
+4. volatile 和 内存屏障
+  https://www.cnblogs.com/yaowen/p/11240540.html
