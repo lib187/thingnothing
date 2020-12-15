@@ -109,3 +109,15 @@ int main(int argc, char args[])
      
 4. volatile 和 内存屏障
   https://www.cnblogs.com/yaowen/p/11240540.html
+  java中volatile https://www.cnblogs.com/yaowen/p/11240540.html
+  内存屏障--很重要 https://www.cnblogs.com/icanth/archive/2012/06/10/2544300.html
+  思考下单核多线程和多核多线程的情况下加锁的作用是什么？
+  
+5. 斐波那契数列的三种思路
+  https://blog.csdn.net/mengxiangjia_linxi/article/details/78158819
+  
+6. 内核同步方法
+  https://www.cnblogs.com/wang_yb/archive/2013/05/01/3052865.html
+
+7. 刷题
+  消消乐 磁盘容量 we are a team
