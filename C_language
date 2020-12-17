@@ -113,6 +113,11 @@ int main(int argc, char args[])
   内存屏障--很重要 https://www.cnblogs.com/icanth/archive/2012/06/10/2544300.html
   理解下为什么要有内存屏障 http://sstompkins.wordpress.com/2011/04/12/why-memory-barrier%EF%BC%9F/
   思考下单核多线程和多核多线程的情况下加锁的作用是什么？
+  内存屏障的讲解 https://blog.csdn.net/Adam040606/article/details/50898070
+  https://blog.csdn.net/qb_2008/article/details/6840593
+  测试的例子 
+    https://blog.csdn.net/tjf1314520/article/details/50421118
+    https://blog.csdn.net/XiaoH0_0/article/details/97411942
   
 5. 斐波那契数列的三种思路
   https://blog.csdn.net/mengxiangjia_linxi/article/details/78158819
@@ -125,3 +130,9 @@ int main(int argc, char args[])
 
 8. 开源汇编和反汇编工具
   https://blog.csdn.net/earbao/article/details/72857805
+
+9. 简明网络I/O模型---同步异步阻塞非阻塞之惑
+  https://www.jianshu.com/p/55eb83d60ab1
+  https://www.jianshu.com/p/edb9ddd51c3d
+  tinyhttpd —— C 语言实现最简单的 HTTP 服务器 https://blog.csdn.net/jcjc918/article/details/42129311
+  HTTP 和 Socket 的区别 https://www.jianshu.com/p/a18a5ba78fad
