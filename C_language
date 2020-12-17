@@ -111,6 +111,7 @@ int main(int argc, char args[])
   https://www.cnblogs.com/yaowen/p/11240540.html
   java中volatile https://www.cnblogs.com/yaowen/p/11240540.html
   内存屏障--很重要 https://www.cnblogs.com/icanth/archive/2012/06/10/2544300.html
+  理解下为什么要有内存屏障 http://sstompkins.wordpress.com/2011/04/12/why-memory-barrier%EF%BC%9F/
   思考下单核多线程和多核多线程的情况下加锁的作用是什么？
   
 5. 斐波那契数列的三种思路
